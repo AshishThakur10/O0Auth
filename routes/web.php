@@ -1,5 +1,5 @@
 <?php
-
+use App\Http\Controllers\Auth\GoogleController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -28,6 +28,6 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->name('dashboard');
 
-Route::get('/auth/google/redirect', []);
+Route::get('/auth/google/redirect', [GoogleController::class, 'handleGoogleRedirect']);
 
-Route::get('/auth/google/callback',[]);
+Route::get('/auth/google/callback',[GoogleController::class, 'handleGoogleCallback']);
