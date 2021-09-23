@@ -12,6 +12,12 @@
             {{ status }}
         </div>
 
+        <div>
+            <jet-button @click="loginWithGoogle" class="w-full my-3" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+                <span class="mx-auto"> Sign in with Google </span>
+            </jet-button>
+        </div> 
+
         <form @submit.prevent="submit">
             <div>
                 <jet-label for="email" value="Email" />
@@ -92,6 +98,9 @@
                     .post(this.route('login'), {
                         onFinish: () => this.form.reset('password'),
                     })
+            },
+            loginWithGoogle() {
+                window.location.href = '/auth/google/redirect'
             }
         }
     })
